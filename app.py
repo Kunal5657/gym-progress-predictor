@@ -121,10 +121,10 @@ if st.button('Predict'):
         st.error(f"Error: {e}")
     
 
-st.sidebar.title("About")
+st.sidebar.title("About")    
 
 st.sidebar.write(
     "This model predicts Final Muscle Mass using training, body composition, and dietary variables."
 )
 
-st.sidebar.image(r'C:\Users\Kunal\OneDrive\Documents\py_charm\vscode#2\GYM.png', width=200)
+st.sidebar.image(r'GYM.png', width=200)
