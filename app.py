@@ -112,19 +112,39 @@ if st.button('Predict'):
     
         prediction = model.predict(input_df)
 
-        st.metric(
-            label="Predicted Final Muscle Mass",
-            value=f"{prediction[0]:.2f} kg"
+        if prediction[0] <= Initial_Lean_Mass_kg:
+
+            st.metric(
+                label="Predicted Final Muscle Mass",
+                value=f"{prediction[0]:.2f} kg"
+            )
+        elif prediction[0] > Initial_Lean_Mass_kg:
+            st.metric(
+                label='Well done keep going 🏋️',
+                value = f"{prediction[0]:.2f} kg"
+            )
+
+        progress_df = pd.DataFrame({
+            'stage':['Start', 'Finish'],
+            'Mucles':[Initial_Lean_Mass_kg,
+                    prediction[0]
+                    ]
+        })
+
+        st.line_chart(
+            progress_df.set_index('stage')
         )
 
     except Exception as e:
         st.error(f"Error: {e}")
-    
 
-st.sidebar.title("About")    
+
+st.sidebar.title("About")
 
 st.sidebar.write(
     "This model predicts Final Muscle Mass using training, body composition, and dietary variables."
 )
 
 st.sidebar.image(r'GYM.png', width=200)
+
+
