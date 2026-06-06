@@ -115,7 +115,7 @@ if st.button('Predict'):
         if prediction[0] <= Initial_Lean_Mass_kg:
 
             st.metric(
-                label="Predicted Final Muscle Mass",
+                label="Your Progress ain't going well 😔",
                 value=f"{prediction[0]:.2f} kg"
             )
         elif prediction[0] > Initial_Lean_Mass_kg:
